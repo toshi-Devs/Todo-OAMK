@@ -14,8 +14,33 @@ input.disabled = true;
 const renderTask = (task) => {
     const li = document.createElement('li');
     li.setAttribute('class', 'list-group-item');
-    li.innerHTML = task.getText()
-    list.appendChild(li);
+    li.setAttribute('data-key', task.getId().toString());
+    // li.innerHTML = task.getText();
+    renderSpan(li, task.getText());
+    renderLink(li, task.getId());
+    list.append(li);
+}
+
+const renderSpan = (li, text) => {
+    const span = li.appendChild(document.createElement('span'));
+    span.innerHTML = text;
+}
+
+const renderLink = (li, id) => {
+    const a = li.appendChild(document.createElement('a'));
+    a.innerHTML = '<i class="bi bi-trash"></i>';
+    a.setAttribute('style', 'float:right; cursor:pointer;');
+    a.addEventListener('click', (e) => {
+        todos.removeTask(id).then((removed_id) => {
+            const li_to_remove = document.querySelector(`[data-key="${removed_id}"]`);
+            if(li_to_remove) {
+                list.removeChild(li_to_remove);
+            }
+        }).catch((error) => {
+            console.error('Error:', error);
+            alert('Error removing task' + error);
+        })
+    });
 }
 
 const getTasks = () => {

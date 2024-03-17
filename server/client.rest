@@ -1,0 +1,12 @@
+### Send request 
+
+GET http://localhost:3001
+
+### UPDATE tasks
+
+POST http://localhost:3001/new HTTP/1.1
+Content-Type: application/json
+
+{
+    "description": "Play CS"
+}

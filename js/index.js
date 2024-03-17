@@ -1,6 +1,15 @@
 const list = document.querySelector('ul');
 const input = document.querySelector('input');
 
+
+const renderTask = (task) => {
+    const li = document.createElement('li');
+    li.setAttribute('class', 'list-group-item');
+    li.innerHTML = task;
+    list.appendChild(li);
+}
+
+
 input.addEventListener('keypress', (e) => {
     if(e.key === 'Enter') {
         e.preventDefault();
@@ -14,3 +23,4 @@ input.addEventListener('keypress', (e) => {
         } 
     }
 });
+

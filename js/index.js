@@ -64,7 +64,7 @@ const getTasks = () => {
         )
         input.disabled = false;
     }).catch((error) => {
-        console.error('Error:', error);
+        // console.error('Error:', error);
         alert('Error fetching tasks' + error);
     })
         // input.disabled = false;
